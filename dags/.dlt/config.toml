@@ -6,4 +6,4 @@ log_level="WARNING"  # the system log level of dlt
 dlthub_telemetry = true
 
 [sources.shopify_dlt]
-shop_url = "shop_url" # please set me up!
+shop_url = "https://steinkraus.com/pages/shop-1" # please set me up!
