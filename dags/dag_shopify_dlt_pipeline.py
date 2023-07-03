@@ -50,7 +50,7 @@ def load_shopify_data():
     # starting at the given date (custom_fields_mapping is included to
     # translate custom field hashes to names)
     customer_source = shopify_source(
-        since_timestamp="2023-03-01 00:00:00Z"
+        start_date="2023-01-01 00:00:00Z"
     ).with_resources("customers")
 
     # Create the source, the "serialize" decompose option
