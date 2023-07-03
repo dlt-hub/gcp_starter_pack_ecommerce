@@ -46,19 +46,19 @@ def load_shopify_data():
     # except activities from the beginning
     source = shopify_source()
 
-    # # Another source configured to activities
-    # # starting at the given date (custom_fields_mapping is included to
-    # # translate custom field hashes to names)
-    # activities_source = shopify_source(
-    #     since_timestamp="2023-03-01 00:00:00Z"
-    # ).with_resources("activities")
+    # Another source configured to activities
+    # starting at the given date (custom_fields_mapping is included to
+    # translate custom field hashes to names)
+    customer_source = shopify_source(
+        since_timestamp="2023-03-01 00:00:00Z"
+    ).with_resources("customers")
 
     # Create the source, the "serialize" decompose option
     # will convert dlt resources into Airflow tasks.
     # Use "none" to disable it.
     tasks.add_run(
         pipeline=pipeline,
-        data=source,
+        data=customer_source,
         decompose="serialize",
         trigger_rule="all_done",
         retries=0,
