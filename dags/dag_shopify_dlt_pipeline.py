@@ -64,7 +64,7 @@ def load_shopify_data():
         retries=0,
         provide_context=True,
         op_kwargs= {
-            "start_date": "{{ts}}"
+            "start_date": "{{ds}}"
         }
     )
 
