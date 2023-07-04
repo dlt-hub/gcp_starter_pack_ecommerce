@@ -27,7 +27,7 @@ def load_shopify_data():
     # Use only when it does not fit on the local storage.
     tasks = PipelineTasksGroup(
         pipeline_name="shopify",
-        use_data_folder=False,
+        use_data_folder=True,
         wipe_local_data=True,
         use_task_logger=True,
         retry_policy=Retrying(stop=stop_after_attempt(3), reraise=True),
