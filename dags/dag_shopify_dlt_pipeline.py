@@ -44,7 +44,7 @@ def load_shopify_data():
 
     # First source configure to load everything
     # except activities from the beginning
-    source = shopify_source().with_resources("customers")
+    source = shopify_source()
 
     # Another source configured to activities
     # starting at the given date (custom_fields_mapping is included to
