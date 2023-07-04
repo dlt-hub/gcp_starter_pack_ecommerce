@@ -63,9 +63,6 @@ def load_shopify_data():
         trigger_rule="all_done",
         retries=0,
         provide_context=True,
-        op_kwargs= {
-            "start_date": "{{ds}}"
-        }
     )
 
     # # PipelineTasksGroup can’t handle the list of sources
