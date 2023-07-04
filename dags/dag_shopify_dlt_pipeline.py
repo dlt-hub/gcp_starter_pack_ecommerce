@@ -58,7 +58,7 @@ def load_shopify_data():
     # Use "none" to disable it.
     tasks.add_run(
         pipeline=pipeline,
-        data=shopify_source(start_date="{{ts}}"),
+        data=source,
         decompose="serialize",
         trigger_rule="all_done",
         retries=0,
