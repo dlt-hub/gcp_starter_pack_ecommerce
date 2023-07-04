@@ -44,7 +44,7 @@ def load_shopify_data():
 
     # First source configure to load everything
     # except activities from the beginning
-    source = shopify_source()
+    source = shopify_source().with_resources("customers")
 
     # Another source configured to activities
     # starting at the given date (custom_fields_mapping is included to
@@ -62,7 +62,10 @@ def load_shopify_data():
         decompose="serialize",
         trigger_rule="all_done",
         retries=0,
-        provide_context=True
+        provide_context=True,
+        op_kwargs= {
+            "start_date": "{{ts}}"
+        }
     )
 
     # # PipelineTasksGroup can’t handle the list of sources
