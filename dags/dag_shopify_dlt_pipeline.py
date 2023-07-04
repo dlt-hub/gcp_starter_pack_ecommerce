@@ -23,7 +23,6 @@ default_args = {
 def load_shopify_data():
     from tenacity import Retrying, stop_after_attempt
 
-    exec_date = "{{ ts }}"
     # Set `use_data_folder` to True to store temporary data on the `data` bucket.
     # Use only when it does not fit on the local storage.
     tasks = PipelineTasksGroup(
@@ -45,7 +44,7 @@ def load_shopify_data():
 
     # First source configure to load everything
     # except activities from the beginning
-    source = shopify_source(start_date=exec_date)
+    # source = shopify_source(start_date="{{ ts }}")
 
     # Another source configured to activities
     # starting at the given date (custom_fields_mapping is included to
@@ -59,7 +58,7 @@ def load_shopify_data():
     # Use "none" to disable it.
     tasks.add_run(
         pipeline=pipeline,
-        data=source,
+        data=shopify_source(start_date="{{ts}}"),
         decompose="serialize",
         trigger_rule="all_done",
         retries=0,
