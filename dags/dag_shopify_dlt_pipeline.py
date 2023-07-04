@@ -23,8 +23,7 @@ default_args = {
 def load_shopify_data():
     from tenacity import Retrying, stop_after_attempt
 
-    exec_date = "{{ ds }}"
-    print(exec_date)
+    exec_date = "{{ ts }}"
     # Set `use_data_folder` to True to store temporary data on the `data` bucket.
     # Use only when it does not fit on the local storage.
     tasks = PipelineTasksGroup(
