@@ -20,13 +20,9 @@ default_args = {
     catchup=False,
     default_args=default_args
 )
-def load_shopify_data(**kwargs):
-    """
-    This is the main dag defination.
-    """
+def load_shopify_data():
     from tenacity import Retrying, stop_after_attempt
 
-    ds = kwargs["ds"]
     # Set `use_data_folder` to True to store temporary data on the `data` bucket.
     # Use only when it does not fit on the local storage.
     tasks = PipelineTasksGroup(
@@ -43,12 +39,12 @@ def load_shopify_data(**kwargs):
     """Example to incrementally load activities limited to items updated after a given date"""
 
     pipeline = dlt.pipeline(
-        pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data"
+        pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data_airflow_one"
     )
 
     # First source configure to load everything
     # except activities from the beginning
-    source = shopify_source(start_date=ds)
+    source = shopify_source()
 
     # Another source configured to activities
     # starting at the given date (custom_fields_mapping is included to

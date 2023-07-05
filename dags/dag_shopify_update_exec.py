@@ -13,7 +13,7 @@ def load_shopify_data_two():
     from shopify_dlt import shopify_source
     
     @task
-    def load_table(table, **kwargs):
+    def load_products(**kwargs):
         """
         Task to load tables into Bigquery.
 
@@ -28,11 +28,52 @@ def load_shopify_data_two():
         pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data_two")
 
         load_info = pipeline.run(
-            shopify_source(start_date=ds).with_resources(table))
+            shopify_source(start_date=ds).with_resources("products"))
         
         print(load_info)
 
+    @task
+    def load_orders(**kwargs):
+        """
+        Task to load tables into Bigquery.
 
-    load_table.expand(table=["products", "orders", "customers"])
+        :params:
+        :tables: -> The dlt resource  name to load.
+        :kwards: -> Parameters passed by airflow at runtime.
+        """
+
+        ds = kwargs["ds"]
+
+        pipeline = dlt.pipeline(
+        pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data_two")
+
+        load_info = pipeline.run(
+            shopify_source(start_date=ds).with_resources("orders"))
+        
+        print(load_info)
+
+    @task
+    def load_customers(**kwargs):
+        """
+        Task to load tables into Bigquery.
+
+        :params:
+        :tables: -> The dlt resource  name to load.
+        :kwards: -> Parameters passed by airflow at runtime.
+        """
+
+        ds = kwargs["ds"]
+
+        pipeline = dlt.pipeline(
+        pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data_two")
+
+        load_info = pipeline.run(
+            shopify_source(start_date=ds).with_resources("customers"))
+        
+        print(load_info)
+
+    load_products()
+    load_orders()
+    load_customers()
 
 load_shopify_data_two()
