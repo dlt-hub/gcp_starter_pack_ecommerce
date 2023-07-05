@@ -22,7 +22,7 @@ default_args = {
 )
 def load_shopify_data(**kwargs):
     """
-    This is the main dag  defination.
+    This is the main dag defination.
     """
     from tenacity import Retrying, stop_after_attempt
 
