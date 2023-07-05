@@ -74,7 +74,7 @@ def shopify_source(
             Iterable[TDataItem]: A generator of orders.
         """
         page = shopify.Order.find(
-            updated_at_min=updated_at.last_value, created_at_min=start_date, status="any"
+            updated_at_min=updated_at.last_value, created_at_min=start_date
         )
         yield iterate_page(page)
 
