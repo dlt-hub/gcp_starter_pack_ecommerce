@@ -39,7 +39,7 @@ def load_shopify_data():
     """Example to incrementally load activities limited to items updated after a given date"""
 
     pipeline = dlt.pipeline(
-        pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data_airflow_one"
+        pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data_test"
     )
 
     # First source configure to load everything
