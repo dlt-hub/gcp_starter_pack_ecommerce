@@ -19,7 +19,7 @@ def load_shopify_data_two():
         ds = kwargs["ds"]
 
         pipeline = dlt.pipeline(
-        pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data_2.0")
+        pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data_two")
 
         load_info = pipeline.run(
             shopify_source(start_date=ds).with_resources(table))
