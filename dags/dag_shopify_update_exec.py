@@ -10,7 +10,6 @@ from airflow.decorators import dag, task
     tags=["steinkraus, shopify"]
 )
 def load_shopify_data_two():
-    """Execute a pipeline that will load all the resources for the given endpoints."""
     from shopify_dlt import shopify_source
     
     @task
