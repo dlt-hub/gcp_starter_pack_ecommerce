@@ -20,7 +20,7 @@ default_args = {
     default_args=default_args,
     tags=["steinkraus, shopify"]
 )
-def load_shopify_data():
+def load_shopify_data_two():
 
     from shopify_dlt import shopify_source
     
@@ -40,4 +40,4 @@ def load_shopify_data():
 
     load_table.expand(table=["products", "orders", "customers"])
 
-load_shopify_data()
+load_shopify_data_two()
