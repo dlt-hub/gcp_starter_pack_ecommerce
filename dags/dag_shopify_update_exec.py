@@ -2,22 +2,11 @@ import dlt
 import pendulum
 from airflow.decorators import dag, task
 
-# Modify the dag arguments
-default_args = {
-    'owner': 'airflow',
-    'depends_on_past': False,
-    'email': 'test@test.com',
-    'email_on_failure': False,
-    'email_on_retry': False,
-    'retries': 0,
-    'max_active_runs': 1
-}
 
 @dag(
     schedule=None,
     start_date=pendulum.datetime(2021, 1, 1, tz="UTC"),
     catchup=False,
-    default_args=default_args,
     tags=["steinkraus, shopify"]
 )
 def load_shopify_data_two():
