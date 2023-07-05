@@ -1,7 +1,9 @@
 import dlt
-from airflow.decorators import dag
+from airflow.decorators import dag, task
 from dlt.common import pendulum
 from dlt.helpers.airflow_helper import PipelineTasksGroup
+from airflow.operators.python_operator import PythonOperator
+from shopify_dlt.settings import FIRST_DAY_OF_MILLENNIUM
 
 # Modify the dag arguments
 default_args = {
@@ -21,6 +23,19 @@ default_args = {
     default_args=default_args
 )
 def load_shopify_data():
+
+    
+    def change_first_day_of_millennium(execution_date):
+        FIRST_DAY_OF_MILLENNIUM = execution_date
+        print(f"Changed FIRST_DAY_OF_MILLENNIUM to {FIRST_DAY_OF_MILLENNIUM}")
+
+    exec_date_task = PythonOperator(
+        task_id='change_first_day',
+        python_callable=change_first_day_of_millennium,
+        op_kwargs={'execution_date': '{{ ds }}'},
+        dag=dag,
+    )
+
     from tenacity import Retrying, stop_after_attempt
 
     # Set `use_data_folder` to True to store temporary data on the `data` bucket.
@@ -39,7 +54,7 @@ def load_shopify_data():
     """Example to incrementally load activities limited to items updated after a given date"""
 
     pipeline = dlt.pipeline(
-        pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data"
+        pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data_test"
     )
 
     # First source configure to load everything
@@ -56,6 +71,7 @@ def load_shopify_data():
     # Create the source, the "serialize" decompose option
     # will convert dlt resources into Airflow tasks.
     # Use "none" to disable it.
+    
     tasks.add_run(
         pipeline=pipeline,
         data=source,
@@ -65,6 +81,7 @@ def load_shopify_data():
         provide_context=True,
     )
 
+    exec_date_task >> tasks
     # # PipelineTasksGroup can’t handle the list of sources
     # # (e.g. data=[source, activities_source]),
     # # so we have to add them sequentially.
