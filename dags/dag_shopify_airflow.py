@@ -20,14 +20,12 @@ default_args = {
     catchup=False,
     default_args=default_args
 )
-def load_shopify_data():
+def load_shopify_data_airflow():
     from tenacity import Retrying, stop_after_attempt
+    from shopify_dlt import shopify_source
     
     @task
     def create_pipeline(**kwargs):
-        # Import your source from pipeline script
-        from shopify_dlt import shopify_source
-
         ds = kwargs["ds"]
 
         pipeline = dlt.pipeline(
@@ -75,4 +73,4 @@ def load_shopify_data():
     source_data, source_pipeline = create_pipeline()
     load_tables(source_data, source_pipeline)
 
-load_shopify_data()
+load_shopify_data_airflow()

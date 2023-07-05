@@ -13,7 +13,14 @@ def load_shopify_data_two():
     from shopify_dlt import shopify_source
     
     @task
-    def load_products(**kwargs):
+    def create_pipeline():
+        pipeline = dlt.pipeline(
+        pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data_two")
+
+        return pipeline
+    
+    @task
+    def load_products(pipeline, **kwargs):
         """
         Task to load tables into Bigquery.
 
@@ -23,9 +30,6 @@ def load_shopify_data_two():
         """
 
         ds = kwargs["ds"]
-
-        pipeline = dlt.pipeline(
-        pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data_two")
 
         load_info = pipeline.run(
             shopify_source(start_date=ds).with_resources("products"))
@@ -33,7 +37,7 @@ def load_shopify_data_two():
         print(load_info)
 
     @task
-    def load_orders(**kwargs):
+    def load_orders(pipeline, **kwargs):
         """
         Task to load tables into Bigquery.
 
@@ -43,9 +47,6 @@ def load_shopify_data_two():
         """
 
         ds = kwargs["ds"]
-
-        pipeline = dlt.pipeline(
-        pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data_two")
 
         load_info = pipeline.run(
             shopify_source(start_date=ds).with_resources("orders"))
@@ -53,7 +54,7 @@ def load_shopify_data_two():
         print(load_info)
 
     @task
-    def load_customers(**kwargs):
+    def load_customers(pipeline, **kwargs):
         """
         Task to load tables into Bigquery.
 
@@ -64,16 +65,14 @@ def load_shopify_data_two():
 
         ds = kwargs["ds"]
 
-        pipeline = dlt.pipeline(
-        pipeline_name="shopify", destination='bigquery', dataset_name="shopify_data_two")
-
         load_info = pipeline.run(
             shopify_source(start_date=ds).with_resources("customers"))
         
         print(load_info)
 
-    load_products()
-    load_orders()
-    load_customers()
+    data_pipeline = create_pipeline()
+    load_products(data_pipeline)
+    load_orders(data_pipeline)
+    load_customers(data_pipeline)
 
 load_shopify_data_two()
