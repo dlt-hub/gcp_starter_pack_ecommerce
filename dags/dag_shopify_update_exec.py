@@ -14,6 +14,13 @@ def load_shopify_data_two():
     
     @task
     def load_table(table, **kwargs):
+        """
+        Task to load tables into Bigquery.
+
+        :params:
+        :tables: -> The dlt resource  name to load.
+        :kwards: -> Parameters passed by airflow at runtime.
+        """
 
         ds = kwargs["ds"]
 
