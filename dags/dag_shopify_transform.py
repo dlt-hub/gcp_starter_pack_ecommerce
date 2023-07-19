@@ -29,12 +29,12 @@ default_args = {
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 0,
+    'start_date': datetime(2023, 1, 1),
     'max_active_runs': 1
 }
 
 dag = DAG(dag_id='shopify_transform_dbt',
           default_args=default_args,
-          start_date=pendulum.datetime(2023, 1, 1),
           schedule_interval=None,
           max_active_runs=1,
           catchup=False)
