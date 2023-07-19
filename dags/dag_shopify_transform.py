@@ -34,6 +34,7 @@ default_args = {
 
 dag = DAG(dag_id='shopify_transform_dbt',
           default_args=default_args,
+          start_date=pendulum.datetime(2023, 1, 1),
           schedule_interval=None,
           max_active_runs=1,
           catchup=False)
