@@ -2,7 +2,6 @@ from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
-from pipedrive import pipedrive_source
 import dlt
 import os
 
