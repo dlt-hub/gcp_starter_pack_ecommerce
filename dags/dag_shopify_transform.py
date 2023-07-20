@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
+from dlt.common.runners import Venv
 import dlt
 import os
 
@@ -10,7 +11,7 @@ def shopify_dbt():
     pipeline = dlt.pipeline(pipeline_name='shopify', destination='bigquery', dataset_name='shopify_data')
     # now that data is loaded, let's transform it
     # make or restore venv for dbt, uses latest dbt version
-    venv = dlt.dbt.get_venv(pipeline)
+    venv = Venv(pipeline)
     # get runner, optionally pass the venv
     here = os.path.dirname(os.path.realpath(__file__))
     dbt = dlt.dbt.package(pipeline,
