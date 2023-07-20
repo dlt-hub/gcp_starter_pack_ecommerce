@@ -16,4 +16,4 @@ SELECT
     _dlt_load_id 
 FROM {{ source('proud-plane-390513', 'orders') }} 
 ORDER BY created_at DESC
-LIMIT 100;
+LIMIT 100
