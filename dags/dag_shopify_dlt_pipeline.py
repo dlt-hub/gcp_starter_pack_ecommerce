@@ -34,7 +34,7 @@ def load_shopify_data():
     )
 
     # Import your source from pipeline script
-    from shopify import shopify_source
+    from dlt_shopify import shopify_source
 
     """Example to incrementally load activities limited to items updated after a given date"""
 

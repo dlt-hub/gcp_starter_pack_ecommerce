@@ -15,7 +15,7 @@ def shopify_dbt():
     # get runner, optionally pass the venv
     here = os.path.dirname(os.path.realpath(__file__))
     dbt = dlt.dbt.package(pipeline,
-        os.path.join(here,"shopify/dbt_shopify/shopify"),
+        os.path.join(here,"dlt_shopify/dbt_shopify/shopify"),
         venv=venv)
     models = dbt.run_all()
     for m in models:
