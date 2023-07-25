@@ -1,8 +1,0 @@
-
-version: 2
-
-models:
-  - name: orders_test
-    description: "A test dbt model"
-
-

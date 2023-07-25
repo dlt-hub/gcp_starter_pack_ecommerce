@@ -1,3 +1,10 @@
-config.toml
-dags/.dllt/config.toml
-dags/.dllt/config.toml
+# ignore secrets, virtual environments and typical python compilation artifacts
+secrets.toml
+# ignore basic python artifacts
+.env
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
+# ignore duckdb
+*.duckdb
+*.wal
