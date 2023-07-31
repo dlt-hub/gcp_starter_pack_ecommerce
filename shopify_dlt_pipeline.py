@@ -68,6 +68,6 @@ def incremental_load_with_backloading() -> None:
 if __name__ == "__main__":
     # Add your desired resources to the list...
     resources = ["products", "orders", "customers"]
-    load_all_resources(resources, start_date="2000-01-01")
+    load_all_resources(resources, start_date="2021-08-01")
 
     # incremental_load_with_backloading()
