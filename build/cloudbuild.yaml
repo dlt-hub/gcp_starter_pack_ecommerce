@@ -1,0 +1,11 @@
+steps:
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: 'bash'
+  args:
+  - '-c'
+  - gsutil -m rsync -d -r ./ gs://${_BUCKET_NAME}/dags
+
+substitutions:
+  _BUCKET_NAME: "set me up!"
+options:
+  logging: CLOUD_LOGGING_ONLY
