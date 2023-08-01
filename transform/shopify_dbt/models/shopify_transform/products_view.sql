@@ -19,7 +19,7 @@ SELECT
     status,
     tags,
     _dlt_load_id 
-FROM {{ source('dlt_analytics', 'products') }} 
+FROM {{ source('dlthub-analytics', 'products') }} 
 LIMIT 100
 
 
