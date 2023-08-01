@@ -1,7 +1,6 @@
-import dlt
 from airflow.decorators import dag
 from dlt.common import pendulum
-from dlt.helpers.airflow_helper import PipelineTasksGroup
+
 
 # modify the dag arguments
 
@@ -22,6 +21,9 @@ default_args = {
     default_args=default_args
 )
 def shopify_load():
+    from dlt.helpers.airflow_helper import PipelineTasksGroup
+    import dlt
+    
     # set `use_data_folder` to True to store temporary data on the `data` bucket. Use only when it does not fit on the local storage
     tasks = PipelineTasksGroup("shopify", use_data_folder=False, wipe_local_data=True)
 

@@ -1,8 +1,6 @@
 import dlt
-import os
 from airflow.decorators import dag
 from dlt.common import pendulum
-from dlt.common.runners import Venv
 
 # modify the dag arguments
 
@@ -23,6 +21,9 @@ default_args = {
     default_args=default_args
 )
 def shopify_dbt():
+    import os
+    from dlt.common.runners import Venv
+    
     pipeline = dlt.pipeline(pipeline_name='shopify', destination='bigquery', dataset_name='shopify_data')
     # now that data is loaded, let's transform it
     # make or restore venv for dbt, uses latest dbt version
