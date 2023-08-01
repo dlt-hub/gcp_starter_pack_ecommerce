@@ -1,0 +1,14 @@
+### The schema.yml the secription of the columns and model can be defined.
+### https://docs.getdbt.com/reference/resource-properties/description
+version: 2
+
+models:
+  - name: products_view
+    description: "A simple product view dbt model"
+    columns:
+      - name: id
+        title: "The primary key for this view"
+        tests:
+          - unique
+          - not_null
+

@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: dlt_analytics
+    quoting:
+      database: true
+      schema: true
+      identifier: true
+    schema: "shopify_data"
+    tables:
+      - name: products
+      - name: customers
