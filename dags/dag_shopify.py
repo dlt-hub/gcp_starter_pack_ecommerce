@@ -1,8 +1,9 @@
 import dlt
+import os
 from airflow.decorators import dag
 from dlt.common import pendulum
 from dlt.helpers.airflow_helper import PipelineTasksGroup
-
+from dlt.common.runners import Venv
 
 # modify the dag arguments
 
@@ -40,5 +41,17 @@ def shopify_load():
     # create the source, the "serialize" decompose option will converts dlt resources into Airflow tasks. use "none" to disable it
     tasks.add_run(pipeline, source, decompose="serialize", trigger_rule="all_done", retries=0, provide_context=True)
 
+def shopify_dbt():
+    pipeline = dlt.pipeline(pipeline_name='shopify', destination='bigquery', dataset_name='shopify_data')
+    # now that data is loaded, let's transform it
+    # make or restore venv for dbt, uses latest dbt version
+    venv = Venv.restore_current()
+    # get runner, optionally pass the venv
+    # here = os.path.dirname(os.path.realpath(__file__))
+    dbt = dlt.dbt.package(pipeline, "../transform/shopify_dbt",
+        venv=venv)
+    models = dbt.run_all()
+    for m in models:
+        print(f"Model {m.model_name} materialized in {m.time} with status {m.status} and message {m.message}")
 
-shopify_load()
+shopify_load() >> shopify_dbt()
