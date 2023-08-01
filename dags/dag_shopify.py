@@ -48,7 +48,7 @@ def shopify_dbt():
     venv = Venv.restore_current()
     # get runner, optionally pass the venv
     # here = os.path.dirname(os.path.realpath(__file__))
-    dbt = dlt.dbt.package(pipeline, "../transform/shopify_dbt",
+    dbt = dlt.dbt.package(pipeline, "transform/shopify_dbt",
         venv=venv)
     models = dbt.run_all()
     for m in models:
