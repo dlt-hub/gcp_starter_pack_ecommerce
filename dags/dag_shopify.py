@@ -27,16 +27,18 @@ def load_data():
     tasks = PipelineTasksGroup("pipeline_decomposed", use_data_folder=False, wipe_local_data=True)
 
     # import your source from pipeline script
-    from pipeline_or_source_script import source
+    from shopify_dlt import shopify_source
+
+    source = shopify_source().with_resources("products")
 
     # modify the pipeline parameters 
-    pipeline = dlt.pipeline(pipeline_name='pipeline_name',
-                     dataset_name='dataset_name',
-                     destination='duckdb',
+    pipeline = dlt.pipeline(pipeline_name='shopify',
+                     dataset_name='shopify_data',
+                     destination='bigquery',
                      full_refresh=False # must be false if we decompose
                      )
     # create the source, the "serialize" decompose option will converts dlt resources into Airflow tasks. use "none" to disable it
-    tasks.add_run(pipeline, source(), decompose="serialize", trigger_rule="all_done", retries=0, provide_context=True)
+    tasks.add_run(pipeline, source, decompose="none", trigger_rule="all_done", retries=0, provide_context=True)
 
 
 load_data()

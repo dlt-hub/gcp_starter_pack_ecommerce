@@ -6,6 +6,6 @@ steps:
   - gsutil -m rsync -d -r ./ gs://${_BUCKET_NAME}/dags
 
 substitutions:
-  _BUCKET_NAME: 'us-central1-dwh-prod-306afacd-bucket'
+  _BUCKET_NAME: 'us-central1-dbt-deploy-b3625f81-bucket'
 options:
   logging: CLOUD_LOGGING_ONLY
