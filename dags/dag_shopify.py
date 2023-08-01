@@ -22,9 +22,9 @@ default_args = {
     catchup=False,
     default_args=default_args
 )
-def load_data():
+def shopify_load():
     # set `use_data_folder` to True to store temporary data on the `data` bucket. Use only when it does not fit on the local storage
-    tasks = PipelineTasksGroup("pipeline_decomposed", use_data_folder=False, wipe_local_data=True)
+    tasks = PipelineTasksGroup("shopify", use_data_folder=False, wipe_local_data=True)
 
     # import your source from pipeline script
     from shopify_dlt import shopify_source
@@ -38,7 +38,7 @@ def load_data():
                      full_refresh=False # must be false if we decompose
                      )
     # create the source, the "serialize" decompose option will converts dlt resources into Airflow tasks. use "none" to disable it
-    tasks.add_run(pipeline, source, decompose="none", trigger_rule="all_done", retries=0, provide_context=True)
+    tasks.add_run(pipeline, source, decompose="serialize", trigger_rule="all_done", retries=0, provide_context=True)
 
 
-load_data()
+shopify_load()
