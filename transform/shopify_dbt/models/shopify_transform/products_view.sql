@@ -10,12 +10,12 @@
 
 SELECT 
     id,
-    name, 
-    fulfillment_status,
+    title, 
+    vendor,
     created_at,
     updated_at,
     _dlt_load_id 
-FROM {{ source('dlthub-analytics', 'orders') }} 
+FROM {{ source('dlthub-analytics', 'products') }} 
 ORDER BY created_at DESC
 LIMIT 100
 
