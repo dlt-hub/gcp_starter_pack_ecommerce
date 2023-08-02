@@ -1,4 +1,4 @@
-from airflow.decorators import dag, tasks
+from airflow.decorators import dag, task
 from dlt.common import pendulum
 
 
