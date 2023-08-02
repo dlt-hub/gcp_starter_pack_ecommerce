@@ -15,7 +15,7 @@ SELECT
     created_at,
     updated_at,
     _dlt_load_id 
-FROM {{ source('dlthub-analytics', 'products') }} 
+FROM {{ source('shopify', 'products') }} 
 ORDER BY created_at DESC
 LIMIT 100
 

@@ -1,11 +1,8 @@
 version: 2
 
 sources:
-  - name: dlthub-analytics
-    quoting:
-      database: true
-      schema: true
-      identifier: true
+  - name: shopify
+    database: dlthub-analytics
     schema: "shopify_data"
     tables:
       - name: orders
