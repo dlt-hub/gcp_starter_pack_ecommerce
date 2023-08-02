@@ -1,10 +1,19 @@
 
 /*
-    Welcome to your first dbt model!
-    Did you know that you can also configure models directly within SQL files?
+    You can confiqure the models directly within SQL files.
     This will override configurations stated in dbt_project.yml
 
-    Try changing "table" to "view" below
+    Use the config block below to overidde dbt_project.yml file.
+    https://docs.getdbt.com/docs/build/sql-models#configuring-models
+    
+    {{ config(
+        materialized="table",
+        schema="marketing"
+    ) }}
+
+    The name of the SQL file, in this case products_view will be
+    the name of the view created in the bigquery. 
+
 */
 
 
@@ -20,9 +29,3 @@ ORDER BY created_at DESC
 LIMIT 100
 
 
-
-/*
-    Uncomment the line below to remove records with null `id` values
-*/
-
--- where id is not null
