@@ -8,5 +8,6 @@ sources:
       identifier: true
     schema: "shopify_data"
     tables:
+      - name: orders
       - name: products
       - name: customers

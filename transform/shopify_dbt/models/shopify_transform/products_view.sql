@@ -8,18 +8,15 @@
 */
 
 
-
 SELECT 
     id,
-    title, 
-    vendor,
+    name, 
+    fulfillment_status,
     created_at,
-    handle,
     updated_at,
-    status,
-    tags,
     _dlt_load_id 
-FROM {{ source('dlthub-analytics', 'products') }} 
+FROM {{ source('dlthub-analytics', 'orders') }} 
+ORDER BY created_at DESC
 LIMIT 100
 
 
