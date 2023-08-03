@@ -42,7 +42,7 @@ def shopify_etl():
                         full_refresh=False # must be false if we decompose
                         )
         # create the source, the "serialize" decompose option will converts dlt resources into Airflow tasks. use "none" to disable it
-        tasks.add_run(pipeline, source, decompose="none", trigger_rule="all_done", retries=0, provide_context=True)
+        tasks.add_run(pipeline, source, decompose="serialize", trigger_rule="all_done", retries=0, provide_context=True)
 
     @task
     def shopify_transform():
