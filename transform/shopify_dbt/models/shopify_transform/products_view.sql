@@ -7,8 +7,7 @@
     https://docs.getdbt.com/docs/build/sql-models#configuring-models
     
     {{ config(
-        materialized="table",
-        schema="marketing"
+        materialized="table"
     ) }}
 
     The name of the SQL file, in this case products_view will be
