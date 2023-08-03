@@ -1,6 +1,7 @@
 from airflow.decorators import dag, task
 from dlt.common import pendulum
-
+import dlt
+from dlt.common.runners import Venv
 # modify the dag arguments
 
 default_args = {
@@ -25,9 +26,7 @@ def transform():
     """
     @task
     def shopify_dbt():
-        import dlt
         import os
-        from dlt.common.runners import Venv
 
         pipeline = dlt.pipeline(pipeline_name='shopify', destination='bigquery', dataset_name='shopify_data')
         # now that data is loaded, let's transform it
