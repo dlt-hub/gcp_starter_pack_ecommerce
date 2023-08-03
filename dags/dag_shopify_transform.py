@@ -1,8 +1,6 @@
 from airflow.decorators import dag, task
-from dlt.common import pendulum
-import dlt
-from dlt.common.runners import Venv
-import os
+import pendulum
+
 # modify the dag arguments
 
 default_args = {
@@ -17,7 +15,7 @@ default_args = {
 
 @dag(
     schedule=None,
-    start_date=pendulum.datetime(2021, 1, 1),
+    start_date=pendulum.datetime(2021, 1, tz="UTC"),
     catchup=False,
     default_args=default_args
 )
@@ -25,6 +23,9 @@ def transform():
     """
     The Transform Dag
     """
+    import dlt
+    from dlt.common.runners import Venv
+    import os
     @task
     def shopify_dbt():
 
