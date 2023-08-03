@@ -9,7 +9,7 @@ version: 2
 sources:
   - name: shopify
     database: dlthub-analytics
-    schema: {{ var('source_dataset_name') }}
+    schema: "{{ var('source_dataset_name') }}"
     tables:
       - name: orders
       - name: products
