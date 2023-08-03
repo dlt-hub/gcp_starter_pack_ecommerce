@@ -15,7 +15,7 @@ default_args = {
 
 @dag(
     schedule=None,
-    start_date=pendulum.datetime(2021, 1, tz="UTC"),
+    start_date=pendulum.datetime(2021, 1, 1, tz="UTC"),
     catchup=False,
     default_args=default_args
 )
