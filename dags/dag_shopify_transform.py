@@ -19,7 +19,7 @@ default_args = {
     catchup=False,
     default_args=default_args
 )
-def transform():
+def shopify_transform():
     """
     The Transform Dag
     """
@@ -43,4 +43,4 @@ def transform():
 
     shopify_dbt()
 
-transform()
+shopify_transform()
