@@ -34,7 +34,7 @@ models:
   shopify_dbt:
     # Config indicated by + and applies to all files under models/shopify_transform/
     shopify_transform:
-      +schema: "{{ var('source_dataset_name') }}"_views
+      +schema: views
       +materialized: view
 
 # The source lets the user define the data currently stored in dwh.
