@@ -1,0 +1,27 @@
+engine_version: 1
+sources:
+  shopify_dlt:
+    is_dirty: false
+    last_commit_sha: 6da4f69ca61e5a977c767e2938a287ad8ec543aa
+    last_commit_timestamp: '2023-07-24T22:12:21+02:00'
+    files:
+      shopify_dlt/__init__.py:
+        commit_sha: 6da4f69ca61e5a977c767e2938a287ad8ec543aa
+        git_sha: 080375a751c4ebaa4058da3f2432b558980986e1
+        sha3_256: 949535e04421fb403d10dedfd31b6f8583ffdc1542755bf59cb4d3bceea1764c
+      shopify_dlt/README.md:
+        commit_sha: 6da4f69ca61e5a977c767e2938a287ad8ec543aa
+        git_sha: 67e95e660cf9018cc3cac5defcc3a6d24590c8ab
+        sha3_256: 4b6c4ebe1bc0e7bca9506d7b2d5bc68bdfcc68f969d8371631e5db490ebb3abf
+      shopify_dlt/settings.py:
+        commit_sha: 6da4f69ca61e5a977c767e2938a287ad8ec543aa
+        git_sha: 43a2f3939c96aeb23efa65cfb1abaae47aa07cb3
+        sha3_256: 407958ba9e3bfbc377aad3ad3cd755146c037725632bc405b51355a4d0bcac0c
+      shopify_dlt/helpers.py:
+        commit_sha: 6da4f69ca61e5a977c767e2938a287ad8ec543aa
+        git_sha: 00c6106c58f7088b780e8b9b14ee0e9124487385
+        sha3_256: ba1a83d7235ff8d455ac647d67c490831d58b32d59c5dc065982415f0660c0f4
+      shopify_dlt/date_helper.py:
+        commit_sha: 6da4f69ca61e5a977c767e2938a287ad8ec543aa
+        git_sha: ed0e85ba637c9e41186a6dbb6d6fb85a3b85cdcc
+        sha3_256: bf20734aabdb8c880694cfca9aac7f1fc74e35d6a0eee6babd493b1c1aeadbf9
